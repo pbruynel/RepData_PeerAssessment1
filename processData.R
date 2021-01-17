@@ -113,8 +113,20 @@ print(paste("The median of the total number of steps taken per day when missing 
 #   sum(avg_steps_per_interval$average)
 # which is 10766. So there are 8 days more with 10766 steps, which accounts for
 # the increase of 8 in the 10500-11500 range.
-
-
-summary(total_steps_per_day$steps)
+summary(total_steps_per_day$steps)  # shiws that there are 8 NAs
 summary(total_steps_per_day_NoNAs$steps)
+
+# Question 4: Are there differences in activity patterns between weekdays and weekends?
+# For this part the weekdays() function may be of some help here. Use the dataset 
+# with the filled-in missing values for this part.
+
+# 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” 
+#    indicating whether a given date is a weekday or weekend day.
+
+# 2. Make a panel plot containing a time series plot (i.e. "type = "l") of the 
+#    5-minute interval (x-axis) and the average number of steps taken, averaged 
+#    across all weekday days or weekend days (y-axis). See the README file in 
+#    the GitHub repository to see an example of what this plot should look like 
+#    using simulated data.
+
 
