@@ -88,4 +88,33 @@ for (i in 1:nrow(activityData_NoNAs))
 #    and report the mean and median total number of steps taken per day. 
 #    Do these values differ from the estimates from the first part of the assignment? 
 #    What is the impact of imputing missing data on the estimates of the total daily number of steps?
+# Repeat the calculations done in Question 1, but now for the dataset with no NAs.
+total_steps_per_day_NoNAs <- activityData_NoNAs %>% 
+  group_by(date) %>% 
+  summarise(steps = sum(steps))
+# With this new dataset make a histogram of the total number of steps taken each day.
+ggplot(total_steps_per_day_NoNAs, aes(x = steps)) +
+  geom_histogram(fill = "steelblue", binwidth = 1000) +
+  labs(title = "Daily Steps (missing values are replaced)", x = "Steps", y = "Frequency")
+# Comparing the mean and median with NAs and with NAs replaced.
+print(paste("The mean of the total number of steps taken per day (NAs included) is:", meanSteps_PerDay))
+print(paste("The median of the total number of steps taken per day  (NAs included) is:", medianSteps_PerDay))
+meanSteps_PerDay_NoNAs <- mean(total_steps_per_day_NoNAs$steps, na.rm = TRUE)
+medianSteps_PerDay_NoNAs <- median(total_steps_per_day_NoNAs$steps, na.rm = TRUE)
+print(paste("The mean of the total number of steps taken per day when missing values are replaced is:", meanSteps_PerDay_NoNAs))
+print(paste("The median of the total number of steps taken per day when missing values are replaced is:", medianSteps_PerDay_NoNAs))
+# As expected the mean (average) number of steps per day is the same.
+# The median has become the same as the mean by the chosen imputing strategy.
+# The histograms are the same, except that the number of days with 10500-11500 steps 
+# has increased with 8 (from 7 to 15). This can be explained as follows:
+# There are 8 days with no step measurements for the whole day. All steps are NA
+# for these days. These NAs are replaced with the average values. That means that 
+# for each day with missing values a total number of steps is added of:
+#   sum(avg_steps_per_interval$average)
+# which is 10766. So there are 8 days more with 10766 steps, which accounts for
+# the increase of 8 in the 10500-11500 range.
+
+
+summary(total_steps_per_day$steps)
+summary(total_steps_per_day_NoNAs$steps)
 
