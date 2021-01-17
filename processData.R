@@ -65,6 +65,24 @@ print(paste("The number of missing values is", total_NAs))
 
 # 3. Create a new dataset that is equal to the original dataset but with the 
 #    missing data filled in.
+# The new dataset with the missing values replaced is called activityData_NoNAs.
+maxIndex <- nrow(avg_steps_per_interval)
+activityData_NoNAs <- activityData
+for (i in 1:nrow(activityData_NoNAs))
+{
+  if (is.na(activityData_NoNAs[i,"steps"])==TRUE)
+  {
+    # Replace the NAs with the average for that interval.
+    # Calculate the index of the average value to be used to replace the missing value.
+    index <- i%%maxIndex  
+    if (index==0)
+    {
+      index <- maxIndex
+    }
+    # Now replace the missing value with the average for that interval.
+    activityData_NoNAs[i,"steps"] <- avg_steps_per_interval[index,"average"]
+  } 
+}
 
 # 4. Make a histogram of the total number of steps taken each day and Calculate 
 #    and report the mean and median total number of steps taken per day. 
