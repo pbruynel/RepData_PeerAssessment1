@@ -15,7 +15,6 @@ total_steps_per_day <- activityData %>%
   summarise(steps = sum(steps))
 # 2. Make a histogram of the total number of steps taken each day
 library(ggplot2)
-#hist(total_steps_per_day$steps, breaks=10)
 ggplot(total_steps_per_day, aes(x = steps)) +
   geom_histogram(fill = "steelblue", binwidth = 1000) +
   labs(title = "Daily Steps", x = "Steps", y = "Frequency")
@@ -32,6 +31,37 @@ print(paste("The median of the total number of steps taken per day is:", medianS
 
 # 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) 
 #    and the average number of steps taken, averaged across all days (y-axis)
+library(tidyverse)
+avg_steps_per_interval <- activityData %>% 
+  drop_na() %>% 
+  group_by(interval) %>% 
+  summarise(average = mean(steps, na.rm = TRUE))
+ggplot(avg_steps_per_interval, aes(x = interval , y = average)) + 
+  geom_line(color = "steelblue", size = 0.5) + 
+  labs(title = "Daily average steps", x = "5-minute interval", y = "Daily average steps")
 
 # 2. Which 5-minute interval, on average across all the days in the dataset, 
 #    contains the maximum number of steps?
+max_avg_steps_interval <- filter(avg_steps_per_interval, average == max(average))
+print(paste("The maximum average number of steps per interval is", max_avg_steps_interval$average))
+print(paste("The interval of the maximum average number of steps per interval is", max_avg_steps_interval$interval))
+# Use inline code for the report.
+
+
+# Question 3: Imputing missing values
+
+# 1. Calculate and report the total number of missing values in the dataset 
+#    (i.e. the total number of rows with 𝙽𝙰NAs)
+
+# 2. Devise a strategy for filling in all of the missing values in the dataset. 
+#    The strategy does not need to be sophisticated. For example, you could use 
+#    the mean/median for that day, or the mean for that 5-minute interval, etc.
+
+# 3. Create a new dataset that is equal to the original dataset but with the 
+#    missing data filled in.
+
+# 4. Make a histogram of the total number of steps taken each day and Calculate 
+#    and report the mean and median total number of steps taken per day. 
+#    Do these values differ from the estimates from the first part of the assignment? 
+#    What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
