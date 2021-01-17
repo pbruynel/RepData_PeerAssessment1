@@ -42,7 +42,7 @@ ggplot(avg_steps_per_interval, aes(x = interval , y = average)) +
 
 # 2. Which 5-minute interval, on average across all the days in the dataset, 
 #    contains the maximum number of steps?
-max_avg_steps_interval <- filter(avg_steps_per_interval, average == max(average))
+max_avg_steps_interval <- filter(avg_steps_per_interval, average==max(average))
 print(paste("The maximum average number of steps per interval is", max_avg_steps_interval$average))
 print(paste("The interval of the maximum average number of steps per interval is", max_avg_steps_interval$interval))
 # Use inline code for the report.
