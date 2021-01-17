@@ -52,10 +52,16 @@ print(paste("The interval of the maximum average number of steps per interval is
 
 # 1. Calculate and report the total number of missing values in the dataset 
 #    (i.e. the total number of rows with 𝙽𝙰NAs)
+total_NAs <- sum(is.na(activityData$steps))
+print(paste("The number of missing values is", total_NAs))
+# Use inline code for the report.
 
 # 2. Devise a strategy for filling in all of the missing values in the dataset. 
 #    The strategy does not need to be sophisticated. For example, you could use 
 #    the mean/median for that day, or the mean for that 5-minute interval, etc.
+# I will use the mean (average) for that interval as calculated before in avg_steps_per_interval.
+# Replacing the missing values by the average values does not affect the new
+# averages.
 
 # 3. Create a new dataset that is equal to the original dataset but with the 
 #    missing data filled in.
