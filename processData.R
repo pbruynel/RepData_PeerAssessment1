@@ -122,6 +122,9 @@ summary(total_steps_per_day_NoNAs$steps)
 
 # 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” 
 #    indicating whether a given date is a weekday or weekend day.
+# Add new column/variable daytype to activityData_NoNAs
+library(lubridate)
+activityData_NoNAs$daytype <- ifelse(wday(ymd(as.character(activityData_NoNAs$date))) %in% c(1,7), "weekend", "weekday")
 
 # 2. Make a panel plot containing a time series plot (i.e. "type = "l") of the 
 #    5-minute interval (x-axis) and the average number of steps taken, averaged 
