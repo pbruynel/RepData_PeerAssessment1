@@ -131,5 +131,12 @@ activityData_NoNAs$daytype <- ifelse(wday(ymd(as.character(activityData_NoNAs$da
 #    across all weekday days or weekend days (y-axis). See the README file in 
 #    the GitHub repository to see an example of what this plot should look like 
 #    using simulated data.
+avg_steps_per_interval_daytype <- activityData_NoNAs %>% 
+  group_by(interval,daytype) %>% 
+  summarise(average = mean(steps))
 
+ggplot(avg_steps_per_interval_daytype, aes(interval, average, col = factor(daytype))) +
+  facet_grid(daytype~.) +
+  geom_line(show.legend = F) +
+  labs(title = "Daily average steps", x = "5-minute interval", y = "Daily average steps")
 
