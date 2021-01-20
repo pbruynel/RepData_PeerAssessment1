@@ -164,6 +164,7 @@ medianSteps_PerDay_NoNAs <- median(total_steps_per_day_NoNAs$steps)
 Mean and median before replacing missing values:  
 - Mean: 10766.19  
 - Median: 10765  
+
 Mean and median after replacing missing values:  
 - Mean: 10766.19  
 - Median: 10766.19  

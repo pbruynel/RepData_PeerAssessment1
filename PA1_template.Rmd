@@ -148,6 +148,7 @@ medianSteps_PerDay_NoNAs <- median(total_steps_per_day_NoNAs$steps)
 Mean and median before replacing missing values:  
 - Mean: `r format(meanSteps_PerDay, digits=2, nsmall=2)`  
 - Median: `r format(medianSteps_PerDay, digits=2, nsmall=2)`  
+
 Mean and median after replacing missing values:  
 - Mean: `r format(meanSteps_PerDay_NoNAs, digits=2, nsmall=2)`  
 - Median: `r format(medianSteps_PerDay_NoNAs, digits=2, nsmall=2)`  
