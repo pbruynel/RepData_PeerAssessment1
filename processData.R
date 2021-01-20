@@ -92,10 +92,17 @@ for (i in 1:nrow(activityData_NoNAs))
 total_steps_per_day_NoNAs <- activityData_NoNAs %>% 
   group_by(date) %>% 
   summarise(steps = sum(steps))
-# With this new dataset make a histogram of the total number of steps taken each day.
-ggplot(total_steps_per_day_NoNAs, aes(x = steps)) +
-  geom_histogram(fill = "steelblue", binwidth = 1000) +
-  labs(title = "Daily Steps (missing values are replaced)", x = "Steps", y = "Frequency")
+# Show in a histogram both the dataset with NA's and the dataset with the NA's replaced
+total_steps_per_day_NoNAs$NAs <- '1'
+total_steps_per_day$NAs <- '2'
+combined <- rbind(total_steps_per_day, total_steps_per_day_NoNAs)
+ggplot(combined, aes(steps, fill = NAs)) + 
+  geom_histogram(position = 'identity', binwidth = 1000) +
+  scale_fill_discrete(name=NULL,
+                      breaks=c("1", "2"),
+                      labels=c("Replaced NA's", "Original values")) +
+  labs(title = "Frequency of daily Steps (missing values are replaced)", x = "Steps (binwidth=1000)", y = "Frequency")
+
 # Comparing the mean and median with NAs and with NAs replaced.
 print(paste("The mean of the total number of steps taken per day (NAs included) is:", meanSteps_PerDay))
 print(paste("The median of the total number of steps taken per day  (NAs included) is:", medianSteps_PerDay))
