@@ -54,7 +54,7 @@ total_steps_per_day <- activityData %>%
   summarise(steps = sum(steps))
 ```
 The histogram below shows the frequency of the number of steps taken each day.
-```{r}
+```{r HistogramNAs}
 ggplot(total_steps_per_day, aes(x = steps)) +
   geom_histogram(fill = "steelblue", binwidth = 1000) +
   labs(title = "Frequency of daily steps", x = "Steps (binwidth=1000)", y = "Frequency")
@@ -71,7 +71,7 @@ The median of the total number of steps taken per day is: `r medianSteps_PerDay`
 
 ### What is the average daily activity pattern?
 To gain insight of the daily activity pattern the average number of steps per 5-minute interval taken daily is calculated and plotted.
-```{r}
+```{r AverageDailySteps}
 avg_steps_per_interval <- activityData %>% 
   drop_na() %>% 
   group_by(interval) %>% 
@@ -124,7 +124,7 @@ The number of missing values in the newly created dataset is `r total_NAs`
 So all missing values have been replaced.  
 To show the effect of the imputing strategy the histogram is shown below again, this time for the dataset with the missing values replaced.
 
-```{r}
+```{r HistogramNoNAs}
 # Calculate the total steps per day for the new dataset
 total_steps_per_day_NoNAs <- activityData_NoNAs %>% 
   group_by(date) %>% 
@@ -179,7 +179,7 @@ in the 10500-11500 range of the histogram.
 To answer this question the dataset is split in two parts: one part contains the
 data for the weekdays (Monday - Friday), the other part contains the data for the 
 weekends (Saturday - Sunday). The figure below shows a plot for both parts.
-```{r}
+```{r WeekdaysVsWeekends}
 # Add new column/variable daytype to activityData_NoNAs
 activityData_NoNAs$daytype <- ifelse(wday(ymd(as.character(activityData_NoNAs$date))) %in% c(1,7), "weekend", "weekday")
 # Calculate the average number of steps for both types of days

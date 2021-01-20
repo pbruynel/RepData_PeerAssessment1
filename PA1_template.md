@@ -59,7 +59,7 @@ ggplot(total_steps_per_day, aes(x = steps)) +
   labs(title = "Frequency of daily steps", x = "Steps (binwidth=1000)", y = "Frequency")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](PA1_template_files/figure-html/HistogramNAs-1.png)<!-- -->
 
 
 ```r
@@ -84,7 +84,7 @@ ggplot(avg_steps_per_interval, aes(x = interval , y = average)) +
   labs(title = "Daily average number of steps by 5-minute interval", x = "5-minute interval", y = "Daily average number of steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+![](PA1_template_files/figure-html/AverageDailySteps-1.png)<!-- -->
 
 ```r
 max_avg_steps_interval <- filter(avg_steps_per_interval, average==max(average))
@@ -154,7 +154,7 @@ ggplot(combined, aes(steps, fill = NAs)) +
   labs(title = "Frequency of daily Steps (missing values are replaced)", x = "Steps (binwidth=1000)", y = "Frequency")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+![](PA1_template_files/figure-html/HistogramNoNAs-1.png)<!-- -->
 
 ```r
 # Calculate the mean and median of the new dataset with NAs replaced.
@@ -227,7 +227,7 @@ ggplot(avg_steps_per_interval_daytype, aes(interval, average, col = factor(dayty
   labs(title = "Daily average steps", x = "5-minute interval", y = "Daily average steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+![](PA1_template_files/figure-html/WeekdaysVsWeekends-1.png)<!-- -->
   
 The plots show some differences in activities on weekdays and on weekends. The shapes
 are roughly the same with a peak around 9 AM. On weekends the activity during office
